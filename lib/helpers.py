@@ -3,9 +3,12 @@ from models.review import Review
 
 def list_games():
     games = Game.get_all()
-    print("List of games:")
-    for game in games:
-        print(game)
+    if games:
+        print("List of games:")
+        for game in games:
+            print(game)
+    else:
+        print("No games in database")
 
 def find_game_by_name():
     name = input("Please enter the game's name: ")
@@ -14,11 +17,11 @@ def find_game_by_name():
         f"Game {name} not found"
     )
 
-def list_games_by_producer():
-    producer = input("Please enter a producer: ")
-    games = Game.find_by_producer(producer)
+def list_games_by_publisher():
+    publisher = input("Please enter a publisher: ")
+    games = Game.find_by_publisher(publisher)
     print(games) if games else print(
-        f"No games found produced by {producer}"
+        f"No games found produced by {publisher}"
     )
 
 def find_game_by_id():
@@ -31,9 +34,9 @@ def find_game_by_id():
 def create_game():
     name = input("Please enter a name: ")
     genre = input("Please enter the genre: ")
-    producer = input("Please enter the producer: ")
+    publisher = input("Please enter the publisher: ")
     try:
-        game = Game.create(name, genre, producer)
+        game = Game.create(name, genre, publisher)
         print(f"Game successfully created: {game}")
     except Exception as exc:
         print("Error creating game: ", exc)
@@ -46,8 +49,8 @@ def update_game():
             game.name = name
             genre = input("Please enter the new genre")
             game.genre = genre
-            producer = input("Please enter the new producer: ")
-            game.producer = producer
+            publisher = input("Please enter the new publisher: ")
+            game.publisher = publisher
 
             game.update()
             print(f"Game successfully updated: {game}")

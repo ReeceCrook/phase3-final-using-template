@@ -5,11 +5,11 @@ class Game:
 
     all = {}
 
-    def __init__(self, name, genre, producer, id=None):
+    def __init__(self, name, genre, publisher, id=None):
         self.id = id
         self.name = name
         self.genre = genre
-        self.producer = producer
+        self.publisher = publisher
 
     def __repr__(self):
         return f"<Game {self.id}: {self.name}, {self.genre}>"
@@ -41,16 +41,16 @@ class Game:
             )
 
     @property
-    def producer(self):
-        return self._producer
+    def publisher(self):
+        return self._publisher
     
-    @producer.setter
-    def producer(self, producer):
-        if isinstance(producer, str) and len(producer):
-            self._producer = producer
+    @publisher.setter
+    def publisher(self, publisher):
+        if isinstance(publisher, str) and len(publisher):
+            self._publisher = publisher
         else:
             raise ValueError(
-                "Producer must be a non-empty string"
+                "publisher must be a non-empty string"
             )
 
     @classmethod
@@ -60,7 +60,7 @@ class Game:
             id INTEGER PRIMARY KEY,
             name TEXT,
             genre TEXT,
-            producer TEXT)
+            publisher TEXT)
         """
         CURSOR.execute(sql)
         CONN.commit()
@@ -75,29 +75,29 @@ class Game:
 
     def save(self):
         sql = """
-            INSERT INTO games (name, genre, producer)
+            INSERT INTO games (name, genre, publisher)
             VALUES (?, ?, ?)
         """
 
-        CURSOR.execute(sql, (self.name, self.genre, self.producer))
+        CURSOR.execute(sql, (self.name, self.genre, self.publisher))
         CONN.commit()
 
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
     @classmethod
-    def create(cls, name, genre, producer):
-        game = cls(name, genre, producer)
+    def create(cls, name, genre, publisher):
+        game = cls(name, genre, publisher)
         game.save()
         return game
 
     def update(self):
         sql = """
             UPDATE games
-            SET name = ?, genre = ?, producer = ?
+            SET name = ?, genre = ?, publisher = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.name, self.genre, self.producer, self.id))
+        CURSOR.execute(sql, (self.name, self.genre, self.publisher, self.id))
         CONN.commit()
 
     def delete(self):
@@ -118,7 +118,7 @@ class Game:
         if game:
             game.name = row[1]
             game.genre = row[2]
-            game.producer = row[3]
+            game.publisher = row[3]
         else:
             game = cls(row[1], row[2], row[3])
             game.id = row[0]
@@ -159,14 +159,14 @@ class Game:
         return cls.instance_from_db(row) if row else None
     
     @classmethod
-    def find_by_producer(cls, producer):
+    def find_by_publisher(cls, publisher):
         sql = """
             SELECT *
             FROM games
-            WHERE producer is ?
+            WHERE publisher is ?
         """
 
-        rows = CURSOR.execute(sql, (producer,)).fetchall()
+        rows = CURSOR.execute(sql, (publisher,)).fetchall()
         return [cls.instance_from_db(row) for row in rows]
 
     def reviews(self):

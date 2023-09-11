@@ -4,7 +4,7 @@ from helpers import (
     exit_program,
     list_games,
     find_game_by_name,
-    list_games_by_producer,
+    list_games_by_publisher,
     find_game_by_id,
     create_game,
     update_game,
@@ -30,7 +30,7 @@ def main():
         elif choice == "2":
             find_game_by_name()
         elif choice == "3":
-            list_games_by_producer()
+            list_games_by_publisher()
         elif choice == "4":
             find_game_by_id()
         elif choice == "5":
@@ -62,7 +62,7 @@ def menu():
     print("0. Exit the program")
     print("1. List all Games")
     print("2. Find a Game by its name")
-    print("3. List Games by Producer")
+    print("3. List Games by Publisher")
     print("4. Find a Game by its ID")
     print("5. Add new Game to database")
     print("6. Update an existing Game")
