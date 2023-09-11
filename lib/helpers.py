@@ -70,6 +70,60 @@ def list_reviews_by_game():
         for review in game.reviews():
             print(review)
 
+def list_reviews():
+    reviews = Review.get_all()
+    for review in reviews:
+        print(review)
+
+def find_review_by_title():
+    title = input("Please enter the review's title: ")
+    review = Review.find_by_title(title)
+    print(review) if review else print(f"{title} not found")
+
+def find_review_by_id():
+    id_ = input("Please enter the review id: ")
+    review = Review.find_by_id(id_)
+    print(review) if review else print(f"Review {id_} not found")
+
+def create_review():
+    title = input("Please enter a title: ")
+    summary = input("Please enter the summary: ")
+    author = input("Please enter the Author: ")
+    game_id_ = input("Please enter the associated game's id: ")
+    try:
+        review = Review.create(title, summary, author, Game.find_by_id(game_id_).id)
+        print("Review successfully created: ", review)
+    except Exception as exc:
+        print("Error occurred", exc)
+
+def update_review():
+    id_ = input("Please enter the review's id")
+    if review := Review.find_by_id(id_):
+        try:
+            title = input("Please enter a title: ")
+            review.title = title
+            summary = input("Please enter the new summary: ")
+            review.summary = summary
+            author = input("Please enter the new Author: ")
+            review.author = author
+            game_id_ = input("Please enter the new associated game's id: ")
+            review.game_id = game_id_
+            review.update()
+            print("Review successfully updated: ", review)
+        except Exception as exc:
+            print("Error occurred: ", exc)
+    else:
+        print(f"No review found by id {id}")
+
+def delete_review():
+    id_ = input("Please enter the review's id: ")
+    if review := Review.find_by_id(id_):
+        review.delete()
+        print("Review successfully deleted.")
+    else:
+        print(f"Review {id} not found")
+
+
 def exit_program():
     print("Goodbye!")
     exit()

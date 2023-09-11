@@ -2,7 +2,20 @@
 
 from helpers import (
     exit_program,
-    helper_1
+    list_games,
+    find_game_by_name,
+    list_games_by_producer,
+    find_game_by_id,
+    create_game,
+    update_game,
+    delete_game,
+    list_reviews_by_game,
+    list_reviews,
+    find_review_by_title,
+    find_review_by_id,
+    create_review,
+    update_review,
+    delete_review
 )
 
 
