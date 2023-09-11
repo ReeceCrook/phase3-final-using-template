@@ -27,6 +27,32 @@ def main():
             exit_program()
         elif choice == "1":
             list_games()
+        elif choice == "2":
+            find_game_by_name()
+        elif choice == "3":
+            list_games_by_producer()
+        elif choice == "4":
+            find_game_by_id()
+        elif choice == "5":
+            create_game()
+        elif choice == "6":
+            update_game()
+        elif choice == "7":
+            delete_game()
+        elif choice == "8":
+            list_reviews()
+        elif choice == "9":
+            find_review_by_title()
+        elif choice == "10":
+            find_review_by_id()
+        elif choice == "11":
+            create_review()
+        elif choice == "12":
+            update_review()
+        elif choice == "13":
+            delete_review()
+        elif choice == "14":
+            list_reviews_by_game()
         else:
             print("Invalid choice")
 
