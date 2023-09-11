@@ -15,7 +15,7 @@ class Review:
 
     def __repr__(self):
         return (
-            f"<Review {self.id}: {self.title} || {self.summary} || {self.author}, " +
+            f"<Review {self.id}: {self.title}, {self.summary}, {self.author}, " +
             f"game ID: {self.game_id}>"
         )
 

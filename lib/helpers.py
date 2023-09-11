@@ -47,7 +47,7 @@ def update_game():
         try:
             name = input("Please enter the new name: ")
             game.name = name
-            genre = input("Please enter the new genre")
+            genre = input("Please enter the new genre: ")
             game.genre = genre
             publisher = input("Please enter the new publisher: ")
             game.publisher = publisher
@@ -63,7 +63,7 @@ def delete_game():
     id_ = input("Please enter the game's id: ")
     if game := Game.find_by_id(id_):
         game.delete()
-        print(f"Game: {game}, id: {id_} successfully deleted")
+        print(f"{game} successfully deleted")
     else:
         print(f"No game found by id {id_}")
 
@@ -100,7 +100,7 @@ def create_review():
         print("Error occurred", exc)
 
 def update_review():
-    id_ = input("Please enter the review's id")
+    id_ = input("Please enter the review's id: ")
     if review := Review.find_by_id(id_):
         try:
             title = input("Please enter a title: ")
@@ -110,7 +110,7 @@ def update_review():
             author = input("Please enter the new Author: ")
             review.author = author
             game_id_ = input("Please enter the new associated game's id: ")
-            review.game_id = game_id_
+            review.game_id = Game.find_by_id(game_id_).id
             review.update()
             print("Review successfully updated: ", review)
         except Exception as exc:

@@ -12,7 +12,7 @@ class Game:
         self.publisher = publisher
 
     def __repr__(self):
-        return f"<Game {self.id}: {self.name}, {self.genre}>"
+        return f"<Game {self.id}: {self.name}, {self.genre}, {self.publisher}>"
 
     @property
     def name(self):
