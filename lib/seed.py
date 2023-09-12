@@ -7,7 +7,6 @@ def seed_database():
     Game.create_table()
     Review.create_table()
 
-    # Create seed data
     rust = Game.create("Rust", " Survival", "Facepunch Studios")
     dayz = Game.create("DayZ", "Survival", "Bohemia Interactive")
     portal = Game.create("Portal", "Puzzle/Platformer", "Valve")

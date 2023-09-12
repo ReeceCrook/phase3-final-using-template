@@ -50,7 +50,7 @@ class Game:
             self._publisher = publisher
         else:
             raise ValueError(
-                "publisher must be a non-empty string"
+                "Publisher must be a non-empty string"
             )
 
     @classmethod
