@@ -127,6 +127,7 @@ class Game:
 
     @classmethod
     def get_all(cls):
+        cls.create_table()
         sql = """
             SELECT *
             FROM games
@@ -134,7 +135,7 @@ class Game:
 
         rows = CURSOR.execute(sql).fetchall()
 
-        return [cls.instance_from_db(row) for row in rows]
+        return [cls.instance_from_db(row) for row in rows] if rows else None
 
     @classmethod
     def find_by_id(cls, id):
