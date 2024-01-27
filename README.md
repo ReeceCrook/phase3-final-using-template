@@ -1,4 +1,4 @@
-## Game Review Tracker ReamMe
+## Game Review Tracker ReadMe
 
 Welcome to my Game Review Tracker Command Line Interface, a simple cli made for keeping track of games and peoples experiences.
 
